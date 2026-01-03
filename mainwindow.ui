@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>词典/翻译工具</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <layout class="QVBoxLayout" name="leftVBox">
+      <item>
+       <layout class="QHBoxLayout" name="inputLayout">
+        <item>
+         <widget class="QLineEdit" name="inputLineEdit">
+          <property name="placeholderText">
+           <string>输入单词或句子</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="translateButton">
+          <property name="text">
+           <string>翻译</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QTextEdit" name="resultTextEdit">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="examplesLabel">
+        <property name="text">
+         <string>示例</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QListView" name="examplesListView"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QTabWidget" name="rightTabs">
+      <widget class="QWidget" name="historyTab">
+       <attribute name="title">
+        <string>历史</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="historyLayout">
+        <item>
+         <widget class="QListView" name="historyListView"/>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="historyButtons">
+          <item>
+           <widget class="QPushButton" name="deleteHistoryButton">
+            <property name="text">
+             <string>删除所选</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="clearHistoryButton">
+            <property name="text">
+             <string>清空历史</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="commonTab">
+       <attribute name="title">
+        <string>常用</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="commonLayout">
+        <item>
+         <widget class="QListView" name="commonListView"/>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="commonButtons">
+          <item>
+           <widget class="QPushButton" name="addCommonButton">
+            <property name="text">
+             <string>添加到常用</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="removeCommonButton">
+            <property name="text">
+             <string>从常用移除</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <widget class="QLabel" name="creditLabel">
+    <property name="text">
+     <string>王天奇 2023414290325</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

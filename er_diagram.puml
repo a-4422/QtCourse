@@ -1,0 +1,40 @@
+@startuml
+' ER diagram for wtq (SQLite)
+skinparam dpi 150
+skinparam shadowing false
+skinparam monochrome false
+
+left to right direction
+title ER Diagram — wtq (SQLite)
+
+entity "history" as HISTORY {
+  * id : INTEGER <<PK>>
+  --
+  query : TEXT
+  result : TEXT
+  timestamp : INTEGER
+}
+
+entity "common" as COMMON {
+  * id : INTEGER <<PK>>
+  --
+  word : TEXT <<UNIQUE>>
+  freq : INTEGER
+}
+
+' There is no physical foreign key between history and common.
+' They are logically related by business logic (user may add a history query to common).
+HISTORY .. COMMON : "logical association\n(handled by DataManager)"
+
+note right of HISTORY
+  history: stores user queries and translated results.
+  Used for cache hits and presenting recent lookups.
+end note
+
+note left of COMMON
+  common: stores user-favorite words and usage frequency.
+  Used for quick lookup and frequency-sorted suggestions.
+end note
+
+@enduml
+

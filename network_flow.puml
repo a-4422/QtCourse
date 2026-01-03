@@ -1,0 +1,30 @@
+@startuml
+actor User
+participant MainWindow as UI
+participant DataManager as DM
+participant SqlRepository as DB
+participant NetworkManager as NM
+participant HTTP as Server
+participant WorkerThread as WT
+
+User -> UI: enter query / click Translate
+UI -> DM: translateRequested(query)
+DM -> DB: lookupHistory(query)
+DB --> DM: historyResult(found?/result)
+alt cache hit
+  DM -> UI: showResult(result)
+else cache miss
+  DM -> NM: requestTranslate(query)
+  NM -> Server: HTTP request (async)
+  Server --> NM: HTTP response
+  NM --> DM: translateResponse(json)
+  DM -> WT: parseIfNeeded(json)
+  WT --> DM: parsedResult
+  DM -> DB: saveHistory(query,result)
+  DM -> UI: showResult(result)
+end
+
+@enduml
+
+
+

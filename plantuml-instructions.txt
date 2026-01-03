@@ -1,0 +1,19 @@
+To generate the ER diagram PNG locally:
+
+1. Install PlantUML:
+   - Option A: download plantuml.jar from https://plantuml.com/download
+   - Option B: install via package manager (choco, apt, brew, etc.) if available.
+
+2. Place `plantuml.jar` in the project root (next to this script) or install plantuml globally.
+
+3. Run the provided script on Windows:
+   - Double-click `generate_er_png.bat` or run from command prompt:
+       generate_er_png.bat
+
+   Or run directly with java:
+       java -jar plantuml.jar -tpng er_diagram.puml
+
+4. The output `er_diagram.png` will be created in the project directory.
+
+
+

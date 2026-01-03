@@ -1,0 +1,27 @@
+@startuml
+left to right direction
+skinparam dpi 120
+title Model/View Interaction (wtq)
+actor User
+User -> MainWindow : enter query / click Translate
+MainWindow -> DataManager : translateRequested(query)
+DataManager -> SqlRepository : lookupHistory(query)
+SqlRepository --> DataManager : historyResult(found?/result)
+alt cache miss
+  DataManager -> NetworkManager : requestTranslate(query)
+  NetworkManager --> DataManager : translateResponse(json)
+  DataManager -> examplesModel : update(...)
+  DataManager -> historyModel : append(...)
+else cache hit
+  DataManager -> historyModel : append(...) (from DB)
+end
+MainWindow -> historyView : setModel(historyModel or proxy)
+MainWindow -> examplesView : setModel(examplesModel)
+MainWindow -> commonView : setModel(commonModel)
+note right
+  Optionally insert QSortFilterProxyModel between models and views\n  for filtering and sorting without modifying source models.
+end note
+@enduml
+
+
+
